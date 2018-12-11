@@ -18,21 +18,17 @@ public class Test {
         to.addCustomer(customer1);
         to.addCustomer(customer2);
 
-        //System.out.println(customer1);
-        //System.out.println(customer2);
+        System.out.println(to);
 
-        to.showTrip();
         to.addTrip("Wies", domeseticTrip);
+
+        System.out.println(to);
+
         to.removeTrip("Wies");
-
-        //to.addCustomer(customer1);
-        //to.addCustomer(customer2);
         to.removeCustomer(customer1);
-        to.showTrip();
 
+        System.out.println(to);
 
-
-        //System.out.println(to);
 
     }
 }

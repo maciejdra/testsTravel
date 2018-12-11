@@ -11,13 +11,6 @@ public class TravelOffice {
 
     }
 
-    void showTrip(){
-
-        for (Customer cs : customers){
-            System.out.println(cs.toString());
-        }
-    }
-
     void addTrip(String name, Trip trip){
 
         trips.put(name, trip);
@@ -52,5 +45,13 @@ public class TravelOffice {
         }
         System.out.println("Not a specified customer");
         return false;
+    }
+
+    Set<Customer> getCustomers(){
+        return customers;
+    }
+
+    Map<String, Trip> getTrips(){
+        return trips;
     }
 }

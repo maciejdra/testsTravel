@@ -31,10 +31,6 @@ public class TravelOfficeTest {
     }
 
     @Test
-    public void showTrip() {
-    }
-
-    @Test
     public void addTrip() {
 
         Date start = new Date(2015, 5, 10);
@@ -60,7 +56,7 @@ public class TravelOfficeTest {
         trips.remove(tr);
         int expectedOut = trips.size();
 
-        assertEquals(actualOut,expectedOut);
+        assertEquals(actualOut,expectedOut + 1);
     }
 
     @Test
