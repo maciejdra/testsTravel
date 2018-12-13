@@ -7,12 +7,12 @@ public class AbroadTrip extends Trip {
         this.insurance = insurance;
     }
 
-    public double getInsurance() {
-        return insurance;
-    }
-
     public void setInsurance(double insurance) {
         this.insurance = insurance;
+    }
+
+    public double getInsurance() {
+        return insurance;
     }
 
     @Override

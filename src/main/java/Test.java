@@ -1,34 +1,32 @@
 public class Test {
 
     public static void main(String[] args) {
+        TravelOffice travelOffice = new TravelOffice();
 
-        TravelOffice to = new TravelOffice();
-
-        Address address = new Address("Krzem", "59-300", "Lubin");
+        Address address1 = new Address("Krzemieniecka 18A","59-300","Lubin");
+        Address address2 = new Address("Wyzwolenia","62-700","Turek");
 
         Customer customer1 = new Customer("Maciej");
-        Customer customer2 = new Customer("Filip");
+        Customer customer2 = new Customer("Artur");
 
-        DomesticTrip domeseticTrip = new DomesticTrip(new Date(2018, 6, 15), new Date(2018, 6, 25), "Wroclaw",1000,200);
-        AbroadTrip abroadTrip = new AbroadTrip(new Date(2018, 11, 15), new Date(2018, 11, 19), "Warszawa",1000,100);
+        Date start1 = new Date(2018,12,6);
+        Date start2 = new Date(2017,12,6);
 
-        customer1.setTrip(domeseticTrip);
-        customer2.setTrip(abroadTrip);
+        Date end1 = new Date(2018,12,12);
+        Date end2 = new Date(2017,12,12);
 
-        to.addCustomer(customer1);
-        to.addCustomer(customer2);
+        DomesticTrip domesticTrip = new DomesticTrip(start1,end1, "Lodz", 500.0,150.0);
+        AbroadTrip abroadTrip = new AbroadTrip(start2,end2, "Warszawa", 550.0,170.0);
 
-        System.out.println(to);
+        customer1.setAddress(address1);
+        customer2.setAddress(address2);
 
-        to.addTrip("Wies", domeseticTrip);
+        customer1.assignTrip(domesticTrip);
+        customer2.assignTrip(abroadTrip);
 
-        System.out.println(to);
+        travelOffice.addCustomer(customer1);
+        travelOffice.addCustomer(customer2);
 
-        to.removeTrip("Wies");
-        to.removeCustomer(customer1);
-
-        System.out.println(to);
-
-
+        System.out.println(travelOffice);
     }
 }

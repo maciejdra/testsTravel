@@ -1,6 +1,5 @@
+import org.junit.Before;
 import org.junit.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -11,79 +10,81 @@ import static org.junit.Assert.*;
 
 public class TravelOfficeTest {
 
-    @Mock
-    Set<Customer> customer = new HashSet<>();
-    Map<String, Trip> trips = new HashMap<>();
+    TravelOffice travelOffice;
+    DomesticTrip domesticTrip;
+    AbroadTrip abroadTrip;
 
-    @InjectMocks
-    TravelOffice to;
+    Set<Customer> customers;
+    Map<String, Trip> trips;
+
+    Date start;
+    Date end;
+
+    @Before
+    public void initialization(){
+        travelOffice = new TravelOffice();
+        customers = new HashSet<>();
+        trips = new HashMap<>();
+
+        start = new Date(2000,01,01);
+        end = new Date(2001,01,01);
+    }
+
 
     @Test
-    public void addCustomer() {
+    public void shouldAddCustomer() {
+        Customer customer1 = new Customer("Maciej");
 
-        Customer c = new Customer("Maciej");
-        int actualOut = customer.size();
-        customer.add(c);
-        int expectedOut = customer.size();
+        customers.add(customer1);
 
-        assertEquals(actualOut + 1, expectedOut);
+        assertEquals(1, customers.size());
 
     }
 
     @Test
-    public void addTrip() {
+    public void shouldAddTrip() {
+        domesticTrip = new DomesticTrip(start,end,"World",200.0,10.0);
+        abroadTrip = new AbroadTrip(start,end,"World 2", 100.0,20.0);
 
-        Date start = new Date(2015, 5, 10);
-        Date end = new Date(2015,6,1);
+        trips.put("Domestic",domesticTrip);
+        trips.put("Abroad",abroadTrip);
 
-        String tr = "Highway";
-
-        Trip t = new Trip(start, end, "Heaven", 55.7);
-        int actualOut = trips.size();
-
-        trips.put(tr, t);
-
-        int expectedOut = trips.size();
-
-        assertEquals(actualOut+1,expectedOut);
+        assertEquals(2,trips.size());
     }
 
     @Test
-    public void removeTrip() {
-        addTrip();
-        String tr = "Highway";
-        int actualOut = trips.size();
-        trips.remove(tr);
-        int expectedOut = trips.size();
+    public void shouldRemoveTrip() {
+        domesticTrip = new DomesticTrip(start,end,"World",200.0,10.0);
+        abroadTrip = new AbroadTrip(start,end,"World 2", 100.0,20.0);
 
-        assertEquals(actualOut,expectedOut + 1);
+        trips.put("Domestic",domesticTrip);
+        trips.put("Abroad",abroadTrip);
+
+        trips.remove("Domestic");
+
+        assertEquals(1,trips.size());
+
     }
 
     @Test
     public void findCustomerByName() {
+        String name = "customer";
+        Customer customer = new Customer(name);
 
-        Customer cust = new Customer("Maciej");
+        customers.add(customer);
 
-        customer.add(cust);
-
-        boolean actualOut = customer.contains(cust);
+        boolean actualOut = customers.contains(customer);
         boolean expectedOut = true;
 
         assertEquals(actualOut,expectedOut);
+
     }
 
     @Test
     public void removeCustomer() {
-        Customer cust = new Customer("Maciej");
-        customer.add(cust);
-
-        int actualOut = customer.size();
-
-        customer.remove(cust);
-
-        int expectedOut = customer.size();
-
-        assertEquals(actualOut,expectedOut + 1);
-
+        Customer customer = new Customer("cust");
+        customers.add(customer);
+        customers.remove(customer);
+        assertFalse(customers.contains(customer));
     }
 }

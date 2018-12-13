@@ -6,52 +6,62 @@ public class TravelOffice {
     private Map<String, Trip> trips = new HashMap<>();
 
     public void addCustomer(Customer customer){
-
         customers.add(customer);
-
     }
 
-    void addTrip(String name, Trip trip){
-
-        trips.put(name, trip);
-
+    public void addTrip(String name, Trip trip){
+        trips.put(name,trip);
     }
 
-    void removeTrip(String name){
-
-        trips.remove(name);
-
+    public int getCustomerCount(){
+        return customers.size();
     }
 
-    public Customer findCustomerByName(String name){
+    boolean removeTrip(String name){
+        if(trips.containsKey(name)){
+            trips.remove(name);
+            return true;
+        }
+        else return false;
+    }
 
-        for (Customer cs : customers){
-            if(cs.getName().equals(name)){
-                System.out.println("Found");
-                return cs;
-            }
-            else{
+    Customer findCustomerByName(String name){
+        Customer customer = new Customer("Finder");
+        for (Customer c : customers){
+            if(c.getName().equals(name)){
+                return c;
             }
         }
-        return null;
+        return customer;
     }
 
     boolean removeCustomer(Customer customer){
-
-        if(findCustomerByName(customer.getName()) != null){
-            customers.remove(findCustomerByName(customer.getName()));
-            System.out.println("Removed");
-            return true;
+        for (Iterator<Customer> iterator = customers.iterator(); iterator.hasNext();){
+            Customer c = iterator.next();
+            if(c.equals(customer)){
+                iterator.remove();
+                return true;
+            }
         }
-        System.out.println("Not a specified customer");
         return false;
     }
 
-    Set<Customer> getCustomers(){
+    public Set<Customer> getAllCustomers() {
         return customers;
     }
 
-    Map<String, Trip> getTrips(){
+    public Map<String, Trip> getAllTrips() {
         return trips;
+    }
+
+    @Override
+    public String toString() {
+        String raport = "";
+        for(Customer c : customers){
+            if(c != null){
+                raport += c.toString();
+            }
+        }
+        return raport;
     }
 }

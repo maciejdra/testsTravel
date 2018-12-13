@@ -5,15 +5,15 @@ import static org.junit.Assert.*;
 public class DateTest {
 
     @Test
-    public void shouldSplitDate() {
+    public void shouldSplitStringData() {
+        String input = "2018-12-01";
+        String splitter = "-";
 
-        String data = "2018-6-25";
-        String punctuation = "-";
-
-        Date expectedOut = Date.checkString(data, punctuation);
-        Date actualOut = new Date(2018,6,25);
-        assertEquals(expectedOut.getYear(), actualOut.getYear());
-        assertEquals(expectedOut.getMonth(), actualOut.getMonth());
-        assertEquals(expectedOut.getDay(), actualOut.getDay());
+        Date expectedDate = Date.splitString(input,splitter);
+        Date actualDate = new Date(2018,12,01);
+        
+        assertEquals(expectedDate.getYear(),actualDate.getYear());
+        assertEquals(expectedDate.getMonth(),actualDate.getMonth());
+        assertEquals(expectedDate.getDay(),actualDate.getDay());
     }
 }
